@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Velkor</title>
+</head>
+<body>
+
+<h2>غرفة الدردشة</h2>
+
+<ul id="messages"></ul>
+
+<input id="m" placeholder="اكتب رسالة">
+<button onclick="send()">إرسال</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  function send() {
+    const m = document.getElementById("m");
+    socket.emit("chat", m.value);
+    m.value = "";
+  }
+
+  socket.on("chat", (msg) => {
+    const li = document.createElement("li");
+    li.textContent = msg;
+    document.getElementById("messages").appendChild(li);
+  });
+</script>
+
+</body>
+</html>
