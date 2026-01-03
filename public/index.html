@@ -8,7 +8,27 @@
 </head>
 <body>
 
-  <div class="card">
+  <!-- LOGO -->
+  <div style="
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  ">
+    <img 
+      src="logo.png" 
+      alt="Velkor Logo"
+      style="
+        width: 96px;
+        height: 96px;
+        border-radius: 24px;
+        object-fit: cover;
+      "
+    >
+  </div>
+
+  <!-- CARD -->
+  <div class="card" style="margin-top: 10px;">
     <h1>Velkor</h1>
 
     <input
@@ -25,7 +45,6 @@
 
     <button class="login" onclick="login()">تسجيل الدخول</button>
 
-    <!-- التعديل الوحيد هنا -->
     <button class="register" onclick="goRegister()">إنشاء حساب</button>
   </div>
 
