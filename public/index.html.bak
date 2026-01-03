@@ -25,13 +25,12 @@
 
     <button class="login" onclick="login()">تسجيل الدخول</button>
 
-    <!-- التعديل الوحيد هنا -->
     <button class="register" onclick="goRegister()">إنشاء حساب</button>
   </div>
 
 <script>
 function goRegister() {
-  window.location.href = "register.html";
+  window.location.href = "/register";
 }
 
 function login() {
