@@ -4,41 +4,93 @@
   <meta charset="UTF-8">
   <title>Velkor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #eef3fb, #f7f9fc);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* اللوغو */
+    .logo-container {
+      margin-top: 60px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .logo-container img {
+      width: 110px;
+      height: auto;
+    }
+
+    /* كرت تسجيل الدخول */
+    .card {
+      background: #ffffff;
+      width: 90%;
+      max-width: 360px;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login {
+      background: #1f6feb;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .register {
+      background: #2ea44f;
+      color: #fff;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- اللوغو -->
-  <div style="text-align:center; margin-top:40px;">
-    <img 
-      src="/logo.png"
-      alt="Velkor Logo"
-      style="
-        width:120px;
-        height:auto;
-        margin-bottom:20px;
-      "
-    >
+  <div class="logo-container">
+    <img src="/logo.png" alt="Velkor Logo">
   </div>
 
-  <!-- مربع تسجيل الدخول -->
-  <div class="card" style="margin-top:10px;">
+  <!-- تسجيل الدخول -->
+  <div class="card">
     <h1>Velkor</h1>
 
-    <input
-      id="username"
-      type="text"
-      placeholder="اسم المستخدم"
-    >
-
-    <input
-      id="password"
-      type="password"
-      placeholder="كلمة المرور"
-    >
+    <input id="username" type="text" placeholder="اسم المستخدم">
+    <input id="password" type="password" placeholder="كلمة المرور">
 
     <button class="login" onclick="login()">تسجيل الدخول</button>
-
     <button class="register" onclick="goRegister()">إنشاء حساب</button>
   </div>
 
