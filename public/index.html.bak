@@ -11,7 +11,7 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* ⬅️ رفع المحتوى */
+      align-items: flex-start;
       background: linear-gradient(180deg, #eef3fb, #f7f9fd);
       font-family: system-ui, -apple-system, BlinkMacSystemFont;
     }
@@ -20,23 +20,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;              /* ⬅️ مثل أول مرة */
-      margin-top: 40px;       /* ⬅️ تحكم بالارتفاع */
+      gap: 18px;
+      margin-top: 40px;
     }
 
-    /* اللوجو */
-    .logo {
-      width: 130px;           /* ⬅️ أكبر فقط */
-      height: 130px;
-      object-fit: contain;
-    }
-
-    /* الكرت (رجع مثل الأول) */
+    /* الكرت */
     .card {
       background: #fff;
       width: 100%;
       max-width: 360px;
-      padding: 32px 26px 34px; /* ⬅️ نفس القيم القديمة */
+      padding: 32px 26px 34px;
       border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
       text-align: center;
@@ -48,16 +41,16 @@
       font-weight: 700;
     }
 
-      .card input {
-  width: 100%;
-  padding: 12px;          /* ⬅️ عادي مثل أي موقع */
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-  outline: none;
-  box-sizing: border-box;
-}
+    .card input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+      outline: none;
+      box-sizing: border-box;
+    }
 
     .card button {
       width: 100%;
@@ -76,7 +69,7 @@
     }
 
     .register {
-      background: #2ea44f;
+      background: #2ea44f; /* ✅ الأخضر هنا طبيعي */
       color: #fff;
     }
   </style>
@@ -85,7 +78,28 @@
 
   <div class="wrapper">
 
-    <img src="logo.png" alt="Velkor Logo" class="logo">
+    <!-- ✅ اللوجو مع إزالة اللون الأخضر فقط -->
+    <svg width="130" height="130" viewBox="0 0 130 130">
+      <defs>
+        <filter id="removeGreen">
+          <feColorMatrix
+            type="matrix"
+            values="
+              1  0  0  0  0
+              0  1  0  0  0
+              0  0  1  0  0
+              0 -1  0  1  0
+            " />
+        </filter>
+      </defs>
+
+      <image
+        href="logo.png"
+        width="130"
+        height="130"
+        filter="url(#removeGreen)"
+      />
+    </svg>
 
     <div class="card">
       <h1>Velkor</h1>
