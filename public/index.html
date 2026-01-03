@@ -28,6 +28,7 @@
     .logo {
       width: 130px;
       height: 130px;
+      display: none; /* 🔥 مخفي حتى إزالة الأخضر */
     }
 
     .card {
@@ -42,8 +43,8 @@
 
     .card h1 {
       margin: 0 0 22px;
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 26px; /* ✅ كبرنا Velkor */
+      font-weight: 800;
     }
 
     .card input {
@@ -83,7 +84,7 @@
 
   <div class="wrapper">
 
-    <!-- ✅ صورة اللوجو -->
+    <!-- اللوجو -->
     <img src="logo.png" class="logo" id="logo" alt="Velkor Logo">
 
     <div class="card">
@@ -99,7 +100,6 @@
   </div>
 
 <script>
-/* 🔥 إزالة اللون الأخضر من الصورة فقط */
 const img = document.getElementById("logo");
 
 img.onload = () => {
@@ -120,13 +120,15 @@ img.onload = () => {
     const b = data[i + 2];
 
     /* حذف الأخضر فقط */
-    if (g > 170 && r < 150 && b < 150) {
+    if (g > 160 && r < 140 && b < 140) {
       data[i + 3] = 0;
     }
   }
 
   ctx.putImageData(imageData, 0, 0);
+
   img.src = canvas.toDataURL("image/png");
+  img.style.display = "block"; /* ✅ يظهر بعد التنظيف */
 };
 
 function goRegister() {
