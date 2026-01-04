@@ -76,6 +76,9 @@
 
     <input type="password" id="password" placeholder="كلمة المرور">
     <button id="saveBtn" class="save" disabled>حفظ</button>
+    <p id="msg" style="color:green; display:none; margin-top:10px;">
+تم إنشاء الحساب بنجاح
+</p>
   </div>
 
 <script>
@@ -88,6 +91,7 @@ const fields = [
 ];
 
 const saveBtn = document.getElementById("saveBtn");
+const msg = document.getElementById("msg");
 
 function checkForm() {
   const ok = fields.every(f => f.value.trim() !== "");
@@ -104,6 +108,31 @@ fields.forEach(f => {
   f.addEventListener("input", checkForm);
   f.addEventListener("change", checkForm);
 });
+
+saveBtn.onclick = () => {
+  fetch("/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: username.value,
+      lastname: nickname.value,
+      age: age.value,
+      gender: gender.value,
+      password: password.value
+    })
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (d.ok) {
+      msg.style.display = "block";
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    } else {
+      alert(d.error);
+    }
+  });
+};
 </script>
 
 </body>
