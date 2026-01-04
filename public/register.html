@@ -100,7 +100,7 @@ const fields = [
 ];
 
 function checkForm() {
-  msg.style.display = "none"; // نخفي الرسالة لو رجع يكتب
+  msg.style.display = "none";
 
   const ok = fields.every(f => f.value.trim() !== "");
   if (ok) {
@@ -127,7 +127,7 @@ saveBtn.addEventListener("click", () => {
     },
     body: JSON.stringify({
       username: usernameInput.value,
-      lastname: nicknameInput.value,
+      nickname: nicknameInput.value, // ✅ صح
       age: ageInput.value,
       gender: genderInput.value,
       password: passwordInput.value
