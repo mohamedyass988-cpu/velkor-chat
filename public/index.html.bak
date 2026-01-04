@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: flex-start;
       background: linear-gradient(180deg, #eef3fb, #f7f9fd);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      font-family: system-ui;
     }
 
     .wrapper {
@@ -24,26 +24,24 @@
       margin-top: 40px;
     }
 
-    /* اللوجو */
     .logo {
       width: 130px;
       height: 130px;
-      display: block; /* ✅ يظهر فورًا بدون تأخير */
     }
 
     .card {
       background: #fff;
       width: 100%;
       max-width: 360px;
-      padding: 32px 26px 34px;
+      padding: 32px;
       border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
       text-align: center;
     }
 
     .card h1 {
-      margin: 0 0 22px;
-      font-size: 28px; /* ✅ كبرنا Velkor شوي */
+      margin-bottom: 22px;
+      font-size: 28px;
       font-weight: 800;
     }
 
@@ -54,8 +52,6 @@
       border-radius: 8px;
       border: 1px solid #ddd;
       font-size: 15px;
-      outline: none;
-      box-sizing: border-box;
     }
 
     .card button {
@@ -75,33 +71,32 @@
     }
 
     .register {
-      background: #2ea44f; /* ✅ الأخضر محفوظ للزر فقط */
+      background: #2ea44f;
       color: #fff;
     }
   </style>
 </head>
 <body>
 
-  <div class="wrapper">
+<div class="wrapper">
 
-    <!-- اللوجو (PNG شفاف – بدون أي معالجة) -->
-    <img src="logo.png" class="logo" alt="Velkor Logo">
+  <img src="logo.png" class="logo">
 
-    <div class="card">
-      <h1>Velkor</h1>
+  <div class="card">
+    <h1>Velkor</h1>
 
-      <input id="username" type="text" placeholder="اسم المستخدم">
-      <input id="password" type="password" placeholder="كلمة المرور">
+    <input id="username" placeholder="اسم المستخدم">
+    <input id="password" type="password" placeholder="كلمة المرور">
 
-      <button class="login" onclick="login()">تسجيل الدخول</button>
-      <button class="register" onclick="goRegister()">إنشاء حساب</button>
-    </div>
-
+    <button class="login" onclick="login()">تسجيل الدخول</button>
+    <button class="register" onclick="goRegister()">إنشاء حساب</button>
   </div>
+
+</div>
 
 <script>
 function goRegister() {
-  window.location.href = "register.html";
+  window.location.href = "/register";
 }
 
 function login() {
@@ -109,16 +104,17 @@ function login() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: document.getElementById("username").value,
-      password: document.getElementById("password").value
+      username: username.value,
+      password: password.value
     })
   })
   .then(r => r.json())
   .then(d => {
     if (d.ok) {
-      window.location.href = "/chat.html";
+      alert("✅ تم تسجيل الدخول");
+      window.location.href = "/chat";
     } else {
-      alert(d.error);
+      alert("❌ اسم المستخدم أو كلمة المرور خطأ");
     }
   });
 }

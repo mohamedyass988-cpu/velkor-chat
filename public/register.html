@@ -5,53 +5,7 @@
   <title>إنشاء حساب</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(180deg, #eef3fb, #f7f9fd);
-      font-family: system-ui;
-    }
-
-    .card {
-      background: #fff;
-      width: 100%;
-      max-width: 360px;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .card h1 {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
-      background: #34a853;
-      color: #fff;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -60,22 +14,8 @@
 
   <input id="username" placeholder="اسم المستخدم">
   <input id="nickname" placeholder="اللقب">
-
-  <select id="age">
-    <option value="">العمر</option>
-    <option>18</option><option>19</option><option>20</option>
-    <option>21</option><option>22</option><option>23</option>
-    <option>24</option><option>25</option><option>26</option>
-    <option>27</option><option>28</option><option>29</option>
-    <option>30</option>
-  </select>
-
-  <select id="gender">
-    <option value="">الجنس</option>
-    <option>ذكر</option>
-    <option>أنثى</option>
-  </select>
-
+  <input id="age" placeholder="العمر">
+  <input id="gender" placeholder="الجنس">
   <input id="password" type="password" placeholder="كلمة المرور">
 
   <button onclick="save()">حفظ</button>
@@ -97,8 +37,8 @@ function save() {
   .then(r => r.json())
   .then(d => {
     if (d.ok) {
-      alert("✅ تم حفظ المعلومات");
-      window.location.href = "/";
+      alert("تم حفظ المعلومات");
+      window.location.href = "index.html";
     } else {
       alert(d.error);
     }
