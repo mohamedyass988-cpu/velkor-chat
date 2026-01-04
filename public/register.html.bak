@@ -116,7 +116,7 @@ fields.forEach(f => {
 });
 
 saveBtn.addEventListener("click", () => {
-  fetch("/api/register", {
+  fetch("/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
