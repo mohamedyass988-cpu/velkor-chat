@@ -28,7 +28,7 @@
     .logo {
       width: 130px;
       height: 130px;
-      display: none; /* 🔥 مخفي حتى إزالة الأخضر */
+      display: block; /* ✅ يظهر فورًا بدون تأخير */
     }
 
     .card {
@@ -43,7 +43,7 @@
 
     .card h1 {
       margin: 0 0 22px;
-      font-size: 26px; /* ✅ كبرنا Velkor */
+      font-size: 28px; /* ✅ كبرنا Velkor شوي */
       font-weight: 800;
     }
 
@@ -75,7 +75,7 @@
     }
 
     .register {
-      background: #2ea44f;
+      background: #2ea44f; /* ✅ الأخضر محفوظ للزر فقط */
       color: #fff;
     }
   </style>
@@ -84,8 +84,8 @@
 
   <div class="wrapper">
 
-    <!-- اللوجو -->
-    <img src="logo.png" class="logo" id="logo" alt="Velkor Logo">
+    <!-- اللوجو (PNG شفاف – بدون أي معالجة) -->
+    <img src="logo.png" class="logo" alt="Velkor Logo">
 
     <div class="card">
       <h1>Velkor</h1>
@@ -100,37 +100,6 @@
   </div>
 
 <script>
-const img = document.getElementById("logo");
-
-img.onload = () => {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
-
-  ctx.drawImage(img, 0, 0);
-
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const data = imageData.data;
-
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
-
-    /* حذف الأخضر فقط */
-    if (g > 160 && r < 140 && b < 140) {
-      data[i + 3] = 0;
-    }
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-
-  img.src = canvas.toDataURL("image/png");
-  img.style.display = "block"; /* ✅ يظهر بعد التنظيف */
-};
-
 function goRegister() {
   window.location.href = "register.html";
 }
