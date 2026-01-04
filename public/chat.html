@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Velkor</title>
+  <title>Velkor Chat</title>
 </head>
 <body>
 
@@ -15,19 +15,18 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  const socket = io();
+const socket = io();
 
-  function send() {
-    const m = document.getElementById("m");
-    socket.emit("chat", m.value);
-    m.value = "";
-  }
+function send() {
+  socket.emit("chat", m.value);
+  m.value = "";
+}
 
-  socket.on("chat", (msg) => {
-    const li = document.createElement("li");
-    li.textContent = msg;
-    document.getElementById("messages").appendChild(li);
-  });
+socket.on("chat", msg => {
+  const li = document.createElement("li");
+  li.textContent = msg;
+  messages.appendChild(li);
+});
 </script>
 
 </body>
