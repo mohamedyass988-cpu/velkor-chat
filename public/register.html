@@ -2,33 +2,91 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>إنشاء حساب</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب</title>
 
-  <link rel="stylesheet" href="/style.css">
+  <style>
+    .row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .row select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    button.save {
+      background: #bdbdbd;
+      cursor: not-allowed;
+    }
+
+    button.save.active {
+      background: #34a853;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
 
 <div class="card">
   <h1>إنشاء حساب</h1>
 
-  <input id="username" placeholder="اسم المستخدم">
-  <input id="nickname" placeholder="اللقب">
-  <input id="age" placeholder="العمر">
-  <input id="gender" placeholder="الجنس">
-  <input id="password" type="password" placeholder="كلمة المرور">
+  <input type="text" id="username" placeholder="اسم المستخدم">
+  <input type="text" id="nickname" placeholder="اللقب">
 
-  <button onclick="save()">حفظ</button>
+  <div class="row">
+    <select id="age">
+      <option value="">العمر</option>
+      <option>10</option><option>11</option><option>12</option>
+      <option>20</option><option>30</option><option>40</option>
+      <option>50</option><option>60</option><option>70</option>
+    </select>
+
+    <select id="gender">
+      <option value="">الجنس</option>
+      <option value="ذكر">ذكر</option>
+      <option value="أنثى">أنثى</option>
+      <option value="شخصي">شخصي</option>
+    </select>
+  </div>
+
+  <input type="password" id="password" placeholder="كلمة المرور">
+
+  <button id="saveBtn" class="save" disabled>حفظ</button>
 </div>
 
 <script>
-function save() {
+const fields = [
+  username, nickname, age, gender, password
+];
+
+const saveBtn = document.getElementById("saveBtn");
+
+function checkForm() {
+  const ok = fields.every(f => f.value.trim() !== "");
+  saveBtn.disabled = !ok;
+  saveBtn.classList.toggle("active", ok);
+}
+
+fields.forEach(f => {
+  f.addEventListener("input", checkForm);
+  f.addEventListener("change", checkForm);
+});
+
+saveBtn.onclick = () => {
   fetch("/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       username: username.value,
-      lastname: nickname.value,
+      nickname: nickname.value,
       age: age.value,
       gender: gender.value,
       password: password.value
@@ -37,13 +95,13 @@ function save() {
   .then(r => r.json())
   .then(d => {
     if (d.ok) {
-      alert("تم حفظ المعلومات");
+      alert("تم إنشاء الحساب بنجاح");
       window.location.href = "index.html";
     } else {
       alert(d.error);
     }
   });
-}
+};
 </script>
 
 </body>
