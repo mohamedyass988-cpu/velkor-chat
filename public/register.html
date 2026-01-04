@@ -100,6 +100,8 @@ const fields = [
 ];
 
 function checkForm() {
+  msg.style.display = "none"; // نخفي الرسالة لو رجع يكتب
+
   const ok = fields.every(f => f.value.trim() !== "");
   if (ok) {
     saveBtn.disabled = false;
@@ -116,6 +118,8 @@ fields.forEach(f => {
 });
 
 saveBtn.addEventListener("click", () => {
+  if (saveBtn.disabled) return;
+
   fetch("/api/register", {
     method: "POST",
     headers: {
